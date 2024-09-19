@@ -1,0 +1,17 @@
+services:
+  kafkaconsumer.worker:
+    image: ${DOCKER_REGISTRY-}kafkaconsumerworker
+    build:
+      context: .
+      dockerfile: KafkaConsumer.Worker/Dockerfile
+  
+  redis:
+    image: redis:alpine
+    container_name: redis_local
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
